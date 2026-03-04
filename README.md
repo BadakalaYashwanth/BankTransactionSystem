@@ -341,4 +341,3 @@ If you ever clone this project on a new computer, you need to create this `.env`
 
 ---
 
-*Written by me, for me. Future Yashwanth — you've got this! 💪*
