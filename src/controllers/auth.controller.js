@@ -68,7 +68,7 @@ async function userLoginController(req, res) {
         const { email, password } = req.body
 
         // Check if user exists in database
-        const user = await userModel.findOne({ email }).select("+password")
+        const user = await userModel.findOne({ email })
 
         if (!user) {
             return res.status(401).json({
@@ -76,9 +76,7 @@ async function userLoginController(req, res) {
                 status: "failed"
             })
         }
-
-        // comparePassword matches the method defined in user.model.js
-        const isValidPassword = await user.comparePassword(password)
+        const isValidPassword = await user.isValidPassword(password)
 
         if (!isValidPassword) {
             return res.status(401).json({
@@ -114,6 +112,7 @@ async function userLoginController(req, res) {
         })
     }
 }
+
 // Export controllers
 module.exports = {
     userRegisterController,
